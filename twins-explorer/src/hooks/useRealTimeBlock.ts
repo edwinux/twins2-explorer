@@ -47,7 +47,7 @@ export function useRealTimeBlock({ blockId, refreshOnNewBlocks = true }: UseReal
 
     const connectToStream = () => {
       try {
-        eventSource = new EventSource('http://localhost:3001/api/v1/status/stream');
+        eventSource = new EventSource('/api/v1/status/stream');
         
         eventSource.onmessage = (event) => {
           try {

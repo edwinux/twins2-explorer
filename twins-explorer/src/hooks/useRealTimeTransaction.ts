@@ -43,7 +43,7 @@ export function useRealTimeTransaction({ txid, refreshOnNewBlocks = true }: UseR
 
     const connectToStream = () => {
       try {
-        eventSource = new EventSource('http://localhost:3001/api/v1/status/stream');
+        eventSource = new EventSource('/api/v1/status/stream');
         
         eventSource.onmessage = (event) => {
           try {

@@ -2,7 +2,6 @@
 
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { twinsApi } from '@/lib/api';
 import { useRealTimeTransaction } from '@/hooks/useRealTimeTransaction';
 
 export default function TransactionPage() {

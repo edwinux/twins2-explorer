@@ -49,8 +49,8 @@ export default function NodeStatus({ compact = false }: NodeStatusProps) {
   const fetchStatus = async () => {
     try {
       const [statusResponse, torrentResponse] = await Promise.all([
-        fetch('http://localhost:3001/api/v1/status'),
-        fetch('http://localhost:3001/api/v1/torrent-sync')
+        fetch('/api/v1/status'),
+        fetch('/api/v1/torrent-sync')
       ]);
 
       if (!statusResponse.ok || !torrentResponse.ok) {

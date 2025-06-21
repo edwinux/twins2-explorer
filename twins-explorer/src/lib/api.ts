@@ -1,5 +1,5 @@
 // API client for TWINS Rust Node
-const TWINS_API_BASE_URL = process.env.NEXT_PUBLIC_TWINS_API_URL || 'http://localhost:3001';
+const TWINS_API_BASE_URL = process.env.NEXT_PUBLIC_TWINS_API_URL || 'https://t2.ed.win';
 
 export interface BlockchainStatus {
   status: string;

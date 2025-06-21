@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { twinsApi } from '@/lib/api';
 import SearchBar from '@/components/SearchBar';
 import { useRealTimeData } from '@/hooks/useRealTimeData';
 

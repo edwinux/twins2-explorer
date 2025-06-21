@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { twinsApi } from '@/lib/api';
 import { useRealTimeData } from '@/hooks/useRealTimeData';
 
 export default function StatsPage() {
