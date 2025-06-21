@@ -1,0 +1,34 @@
+{
+  "repository": {
+    "path": "/opt/twins2-explorer",
+    "url": "git@github.com:edwinux/twins2-explorer.git",
+    "branch": "main"
+  },
+  "services": {
+    "frontend": {
+      "name": "twins-frontend",
+      "build_command": "cd /opt/twins2-explorer/twins-explorer && npm run build",
+      "restart_command": "systemctl restart twins-frontend",
+      "health_check": "curl -f http://localhost:3000/ > /dev/null"
+    },
+    "node": {
+      "name": "twins-node", 
+      "build_command": "cd /opt/twins2-explorer/TWINS-Core/twins_node_rust && $HOME/.cargo/bin/cargo build --release",
+      "restart_command": "systemctl restart twins-node",
+      "health_check": "curl -f http://localhost:3001/api/v1/status > /dev/null"
+    }
+  },
+  "monitoring": {
+    "poll_interval": 60,
+    "max_retries": 3,
+    "log_file": "/var/log/twins-deploy.log",
+    "webhook_url": null
+  },
+  "deploy": {
+    "backup_enabled": true,
+    "backup_path": "/opt/twins-deploy/backups",
+    "rollback_enabled": true,
+    "pre_deploy_hooks": [],
+    "post_deploy_hooks": []
+  }
+}
