@@ -1,0 +1,62 @@
+# macOS
+.DS_Store
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Node.js
+node_modules/
+.npm
+.eslintcache
+
+# Next.js
+.next/
+out/
+build/
+*.next
+
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.cursor/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
+coverage/
+.nyc_output
+
+# Misc
+.cache/
+dist/
+tmp/
+temp/ 
