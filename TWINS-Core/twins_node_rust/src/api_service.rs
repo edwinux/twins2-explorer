@@ -489,6 +489,8 @@ async fn hybrid_sync_handler(State(app_state): State<ApiAppState>) -> Json<Hybri
 
 fn determine_sync_status(block_height: u32, last_block_time: Option<i64>, peer_count: usize) -> String {
     let now = chrono::Utc::now().timestamp();
+    // DEBUG: Log all input values
+    log::warn!("DEBUG determine_sync_status: block_height={}, last_block_time={:?}, peer_count={}", block_height, last_block_time, peer_count);
     
     // If no peers, we're definitely not synced
     if peer_count == 0 {
@@ -505,14 +507,18 @@ fn determine_sync_status(block_height: u32, last_block_time: Option<i64>, peer_c
         }
         
         // If last block is very recent (less than 10 minutes), we're likely synced
+        log::warn!("DEBUG: Block age {} minutes, checking if < 10", block_age_minutes);
         if block_age_minutes < 10 {
+            log::warn!("DEBUG: Returning synced because block age {} < 10 minutes", block_age_minutes);
             return "synced".to_string();
         }
     }
     
     // For TWINS network, blocks should be generated regularly
     // If we have recent blocks and peers, we're likely synced
+    log::warn!("DEBUG: Checking peer count {} >= 3", peer_count);
     if peer_count >= 3 {
+        log::warn!("DEBUG: Returning synced because peer_count {} >= 3", peer_count);
         return "synced".to_string();
     }
     
