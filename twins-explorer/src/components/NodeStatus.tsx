@@ -308,7 +308,7 @@ export default function NodeStatus({ compact = false }: NodeStatusProps) {
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-400">Regular Sync Mode</span>
                   <span className="text-white font-mono">
-                    {((torrentSync.total_downloaded_blocks - (torrentSync.total_downloaded_blocks - 100)) / 10).toFixed(0)} blocks/s
+                    {torrentSync.blocks_per_second.toFixed(0)} blocks/s
                   </span>
                 </div>
                 
