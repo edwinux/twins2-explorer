@@ -34,19 +34,19 @@ export default function RootLayout({
                     <div className="hidden md:ml-6 md:flex md:space-x-8">
                       <Link
                         href="/"
-                        className="text-gray-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                        className="text-gray-900 hover:text-[color:var(--color-accent)] px-3 py-2 rounded-md text-sm font-medium"
                       >
                         Home
                       </Link>
                       <Link
                         href="/stats"
-                        className="text-gray-500 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                        className="text-gray-500 hover:text-[color:var(--color-accent)] px-3 py-2 rounded-md text-sm font-medium"
                       >
                         Network Stats
                       </Link>
                       <Link
                         href="/node"
-                        className="text-gray-500 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                        className="text-gray-500 hover:text-[color:var(--color-accent)] px-3 py-2 rounded-md text-sm font-medium"
                       >
                         Node Status
                       </Link>

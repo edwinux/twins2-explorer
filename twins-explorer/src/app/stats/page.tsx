@@ -13,7 +13,7 @@ export default function StatsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[color:var(--color-accent)]"></div>
       </div>
     );
   }
@@ -67,15 +67,15 @@ export default function StatsPage() {
         <div className="card">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <div className="w-8 h-8 bg-blue-100 rounded-md flex items-center justify-center">
-                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-8 h-8 rounded-md flex items-center justify-center bg-[color:var(--color-accent)]/20">
+                <svg className="w-5 h-5 text-[color:var(--color-accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
                 </svg>
               </div>
             </div>
             <div className="ml-4">
               <h3 className="text-lg font-medium text-gray-900">Block Height</h3>
-              <p className="text-2xl font-bold text-blue-600">{status.block_height.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-[color:var(--color-accent)]">{status.block_height.toLocaleString()}</p>
             </div>
           </div>
         </div>
@@ -264,9 +264,9 @@ export default function StatsPage() {
       <div className="card">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-gray-900">Recent Block Activity</h2>
-          <Link 
+          <Link
             href="/"
-            className="text-blue-600 hover:text-blue-800 font-medium"
+            className="font-medium text-[color:var(--color-accent)] hover:underline"
           >
             View All →
           </Link>
@@ -276,7 +276,7 @@ export default function StatsPage() {
             <div key={block.hash} className="border rounded-lg p-4 hover:bg-gray-50">
               <Link href={`/block/${block.height}`}>
                 <div className="text-center">
-                  <div className="text-lg font-bold text-blue-600">{block.height.toLocaleString()}</div>
+                  <div className="text-lg font-bold text-[color:var(--color-accent)]">{block.height.toLocaleString()}</div>
                   <div className="text-sm text-gray-500">{block.nTx} txs</div>
                   <div className="text-xs text-gray-400 mt-1">
                     {new Date(block.time * 1000).toLocaleTimeString()}
