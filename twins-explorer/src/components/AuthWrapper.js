@@ -44,7 +44,7 @@ export default function AuthWrapper({ children }) {
   // Show loading screen
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-900 via-purple-900 to-indigo-900">
         <div className="text-white text-xl">Loading...</div>
       </div>
     );
@@ -53,19 +53,19 @@ export default function AuthWrapper({ children }) {
   // Show login screen if not authenticated
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+      <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-green-900 via-purple-900 to-indigo-900">
         {/* Main content */}
         <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
           <div className="w-full max-w-md">
             {/* Logo section */}
             <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-600 rounded-full mb-4 shadow-lg">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-[color:var(--color-accent)] rounded-full mb-4 shadow-lg">
                 <span className="text-white font-bold text-3xl">T</span>
               </div>
               <h1 className="text-4xl font-bold text-white mb-2">
                 TWINS Explorer
               </h1>
-              <p className="text-blue-200 text-lg">
+              <p className="text-[color:var(--color-accent)]/50 text-lg">
                 Blockchain Analytics Dashboard
               </p>
             </div>
@@ -83,7 +83,7 @@ export default function AuthWrapper({ children }) {
                       id="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className={`w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent backdrop-blur-sm transition-all duration-200 text-center tracking-widest ${isShaking ? 'animate-shake border-red-400' : ''}`}
+                      className={`w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-accent)] focus:border-transparent backdrop-blur-sm transition-all duration-200 text-center tracking-widest ${isShaking ? 'animate-shake border-red-400' : ''}`}
                       placeholder="Enter password"
                       autoComplete="current-password"
                       required
@@ -103,7 +103,7 @@ export default function AuthWrapper({ children }) {
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-[color:var(--color-accent)] to-purple-600 hover:from-[color:var(--color-accent)]/90 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[color:var(--color-accent)] focus:ring-offset-2 focus:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!password}
                 >
                   <span className="flex items-center justify-center">
@@ -152,11 +152,11 @@ export default function AuthWrapper({ children }) {
   return (
     <div>
       {/* Add logout button to header */}
-      <div className="bg-blue-600 text-white px-4 py-2 text-sm flex justify-between items-center">
+      <div className="bg-[color:var(--color-accent)] text-white px-4 py-2 text-sm flex justify-between items-center">
         <span>🔒 Authenticated Session</span>
         <button
           onClick={handleLogout}
-          className="bg-blue-700 hover:bg-blue-800 px-3 py-1 rounded text-xs transition-colors"
+          className="px-3 py-1 rounded text-xs transition-colors bg-[color:var(--color-accent)] hover:brightness-90"
         >
           Logout
         </button>

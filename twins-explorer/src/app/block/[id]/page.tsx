@@ -17,7 +17,7 @@ export default function BlockPage() {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[color:var(--color-accent)]"></div>
       </div>
     );
   }
@@ -28,9 +28,9 @@ export default function BlockPage() {
         <div className="text-center">
           <h3 className="text-lg font-medium text-red-800">Block Not Found</h3>
           <p className="mt-1 text-sm text-red-700">{error}</p>
-          <Link 
-            href="/" 
-            className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+          <Link
+            href="/"
+            className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[color:var(--color-accent)] hover:brightness-90"
           >
             ← Back to Home
           </Link>
@@ -127,7 +127,7 @@ export default function BlockPage() {
                 <dd className="mt-1 text-sm text-gray-900">
                   <Link 
                     href={`/block/${block.previousBlockHash}`}
-                    className="font-mono text-blue-600 hover:text-blue-800 break-all"
+                    className="font-mono text-[color:var(--color-accent)] hover:underline break-all"
                   >
                     {block.previousBlockHash}
                   </Link>
@@ -142,7 +142,7 @@ export default function BlockPage() {
                 <dd className="mt-1 text-sm text-gray-900">
                   <Link 
                     href={`/tx/${block.coinstakeTxid}`}
-                    className="font-mono text-blue-600 hover:text-blue-800 break-all"
+                    className="font-mono text-[color:var(--color-accent)] hover:underline break-all"
                   >
                     {block.coinstakeTxid}
                   </Link>
@@ -173,9 +173,9 @@ export default function BlockPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <span className="text-sm text-gray-500">#{index + 1}</span>
-                  <Link 
+                  <Link
                     href={`/tx/${txid}`}
-                    className="font-mono text-sm text-blue-600 hover:text-blue-800"
+                    className="font-mono text-sm text-[color:var(--color-accent)] hover:underline"
                   >
                     {twinsApi.shortenHash(txid, 12)}
                   </Link>
@@ -185,14 +185,14 @@ export default function BlockPage() {
                     </span>
                   )}
                   {index === 1 && block.coinstakeTxid && (
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[color:var(--color-accent)]/20 text-[color:var(--color-accent)]">
                       Coinstake
                     </span>
                   )}
                 </div>
                 <Link 
                   href={`/tx/${txid}`}
-                  className="text-sm text-blue-600 hover:text-blue-800"
+                  className="text-sm text-[color:var(--color-accent)] hover:underline"
                 >
                   View →
                 </Link>

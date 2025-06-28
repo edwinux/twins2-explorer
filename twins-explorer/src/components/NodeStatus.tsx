@@ -136,7 +136,7 @@ export default function NodeStatus({ compact = false }: NodeStatusProps) {
           title = 'Started (25%+)';
           break;
         case '▁':
-          bgColor = 'bg-blue-400';
+          bgColor = 'bg-[color:var(--color-accent)]/60';
           title = 'Just started';
           break;
         case '·':
@@ -176,7 +176,7 @@ export default function NodeStatus({ compact = false }: NodeStatusProps) {
             {status.sync_progress < 100 && (
               <>
                 <span>•</span>
-                <span className="text-blue-600 font-medium">
+                <span className="font-medium text-[color:var(--color-accent)]">
                   {status.sync_progress.toFixed(1)}%
                 </span>
               </>
@@ -186,8 +186,8 @@ export default function NodeStatus({ compact = false }: NodeStatusProps) {
 
         {torrentSync && torrentSync.is_active && (
           <div className="flex items-center space-x-1">
-            <span className="text-xs text-blue-500">🌊</span>
-            <span className="text-xs text-blue-500 font-medium">
+            <span className="text-xs text-[color:var(--color-accent)]">🌊</span>
+            <span className="text-xs font-medium text-[color:var(--color-accent)]">
               {torrentSync.blocks_per_second.toFixed(0)} blk/s
             </span>
           </div>
@@ -294,7 +294,7 @@ export default function NodeStatus({ compact = false }: NodeStatusProps) {
                     <span>Downloading</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 bg-blue-400 rounded"></div>
+                    <div className="w-2 h-2 bg-[color:var(--color-accent)]/60 rounded"></div>
                     <span>Starting</span>
                   </div>
                   <div className="flex items-center gap-1">
@@ -316,7 +316,7 @@ export default function NodeStatus({ compact = false }: NodeStatusProps) {
                 <div className="bg-gray-900 p-2 rounded border">
                   <div className="w-full bg-gray-700 rounded-full h-4">
                     <div 
-                      className="bg-gradient-to-r from-blue-500 to-green-500 h-4 rounded-full transition-all duration-300"
+                      className="bg-gradient-to-r from-[color:var(--color-accent)] to-green-500 h-4 rounded-full transition-all duration-300"
                       style={{ width: `${Math.min(status.sync_progress, 100)}%` }}
                     ></div>
                   </div>
@@ -334,8 +334,8 @@ export default function NodeStatus({ compact = false }: NodeStatusProps) {
                   <div className="text-green-400 text-sm">✅ Completed</div>
                   <div className="text-white font-mono text-lg">{torrentSync.completed_segments}</div>
                 </div>
-                <div className="bg-blue-900/20 border border-blue-500/30 rounded p-3">
-                  <div className="text-blue-400 text-sm">⬇ Downloading</div>
+                <div className="bg-[color:var(--color-accent)]/20 border border-[color:var(--color-accent)]/30 rounded p-3">
+                  <div className="text-[color:var(--color-accent)] text-sm">⬇ Downloading</div>
                   <div className="text-white font-mono text-lg">{torrentSync.downloading_segments}</div>
                 </div>
                 <div className="bg-gray-900/20 border border-gray-500/30 rounded p-3">
@@ -349,10 +349,10 @@ export default function NodeStatus({ compact = false }: NodeStatusProps) {
               </div>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-                <div className="bg-blue-900/20 border border-blue-500/30 rounded p-3">
-                  <div className="text-blue-400 text-sm">🔗 Current Height</div>
+                <div className="bg-[color:var(--color-accent)]/20 border border-[color:var(--color-accent)]/30 rounded p-3">
+                  <div className="text-[color:var(--color-accent)] text-sm">🔗 Current Height</div>
                   <div className="text-white font-mono text-lg">{status.block_height.toLocaleString()}</div>
-                  <div className="text-blue-300 text-xs">local blockchain</div>
+                  <div className="text-[color:var(--color-accent)]/80 text-xs">local blockchain</div>
                 </div>
                 <div className="bg-green-900/20 border border-green-500/30 rounded p-3">
                   <div className="text-green-400 text-sm">🌐 Network Height</div>
@@ -413,7 +413,7 @@ export default function NodeStatus({ compact = false }: NodeStatusProps) {
                         <span className="text-gray-400">
                           {download.completion_percentage.toFixed(0)}%
                         </span>
-                        <span className="text-blue-400 truncate max-w-24">
+                        <span className="truncate max-w-24 text-[color:var(--color-accent)]">
                           {download.peer_addr?.split(':')[0] || 'Unknown'}
                         </span>
                       </div>

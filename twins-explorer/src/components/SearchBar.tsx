@@ -79,13 +79,13 @@ export default function SearchBar() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search by block height, block hash, transaction ID, or address..."
-            className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+            className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-[color:var(--color-accent)] focus:border-[color:var(--color-accent)]"
           />
           <div className="absolute inset-y-0 right-0 flex items-center">
             <button
               type="submit"
               disabled={isSearching || !query.trim()}
-              className="mr-2 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="mr-2 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[color:var(--color-accent)] hover:brightness-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[color:var(--color-accent)] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSearching ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
