@@ -370,11 +370,16 @@ pub async fn handle_peer_session(
                                                     match storage.save_block(&block_msg) {
                                                         Ok(_) => {
                                                             info!("✅ Successfully saved block {} to DB.", hex::encode(block_hash));
-                                                            
+
                                                             // Add block header to chain state
                                                             if let Some(block_index) = chain_state.add_block_index(block_msg.header.clone()) {
-                                                                info!("🔗 Added block {} to chain state at height {} (tip updated)", 
+                                                                info!("🔗 Added block {} to chain state at height {} (tip updated)",
                                                                       hex::encode(block_hash), block_index.height);
+
+                                                                // Track synced block in parallel sync manager
+                                                                if let Some(ref psm) = parallel_sync_manager {
+                                                                    psm.handle_block_synced().await;
+                                                                }
                                                             }
                                                         }
                                                         Err(e) => {

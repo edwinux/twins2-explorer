@@ -535,16 +535,8 @@ async fn get_network_height_from_peers(app_state: &ApiAppState, current_height: 
         return std::cmp::max(best_peer_height, current_height);
     }
     
-    // Fallback to known mainnet height if no peer data available
-    const KNOWN_MAINNET_HEIGHT: u32 = 1_613_126; // As of June 2025
-    
-    // If we're syncing historical blocks, use the known mainnet height
-    if current_height < KNOWN_MAINNET_HEIGHT {
-        return KNOWN_MAINNET_HEIGHT;
-    }
-    
-    // If we're caught up or ahead, assume we're at the current height
-    current_height
+    // No peer height available. Returning 0 indicates unknown network height
+    0
 }
 
 async fn get_block_by_hash_handler(
