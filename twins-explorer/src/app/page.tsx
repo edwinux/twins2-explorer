@@ -13,7 +13,7 @@ export default function HomePage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[color:var(--color-accent)]"></div>
       </div>
     );
   }
@@ -40,7 +40,7 @@ export default function HomePage() {
   return (
     <div className="space-y-8">
       {/* Search Bar */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-gray-900">Search the TWINS Blockchain</h2>
           <div className="flex items-center space-x-2">
@@ -59,13 +59,13 @@ export default function HomePage() {
       </div>
 
       {/* Network Status Overview */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">TWINS Network Status</h2>
         {status ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-blue-50 rounded-lg p-4">
-              <div className="text-blue-600 text-sm font-medium">Block Height</div>
-              <div className="text-2xl font-bold text-blue-900">{status.block_height.toLocaleString()}</div>
+            <div className="rounded-lg p-4 bg-[color:var(--color-accent)]/10">
+              <div className="text-sm font-medium text-[color:var(--color-accent)]">Block Height</div>
+              <div className="text-2xl font-bold text-[color:var(--color-accent)]">{status.block_height.toLocaleString()}</div>
             </div>
             <div className="bg-green-50 rounded-lg p-4">
               <div className="text-green-600 text-sm font-medium">Network</div>
@@ -86,12 +86,12 @@ export default function HomePage() {
       </div>
 
       {/* Recent Blocks */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-gray-900">Recent Blocks</h2>
-          <Link 
+          <Link
             href="/blocks" // Assuming a future page for all blocks
-            className="text-blue-600 hover:text-blue-800 font-medium"
+            className="font-medium text-[color:var(--color-accent)] hover:underline"
           >
             View All Blocks →
           </Link>
@@ -114,7 +114,7 @@ export default function HomePage() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <Link 
                         href={`/block/${block.height}`}
-                        className="text-blue-600 hover:text-blue-800 font-medium"
+                        className="font-medium text-[color:var(--color-accent)] hover:underline"
                       >
                         {block.height.toLocaleString()}
                       </Link>
@@ -122,7 +122,7 @@ export default function HomePage() {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <Link 
                         href={`/block/${block.hash}`}
-                        className="text-gray-900 font-mono text-sm hover:text-blue-600"
+                        className="text-gray-900 font-mono text-sm hover:text-[color:var(--color-accent)]"
                       >
                         {block.hash.substring(0, 16)}...
                       </Link>
@@ -144,10 +144,10 @@ export default function HomePage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Explorer Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Link href="/stats" className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors">
+          <Link href="/stats" className="p-4 border border-gray-200 rounded-lg hover:border-[color:var(--color-accent)] hover:bg-[color:var(--color-accent)]/5 transition-colors">
             <div className="font-medium text-gray-900">📊 Network Statistics</div>
             <p className="text-sm text-gray-500 mt-1">View detailed network stats, sporks, and performance metrics.</p>
           </Link>

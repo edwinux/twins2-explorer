@@ -16,7 +16,7 @@ export default function TransactionPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[color:var(--color-accent)]"></div>
       </div>
     );
   }
@@ -42,7 +42,7 @@ export default function TransactionPage() {
   return (
     <div className="space-y-6">
       {/* Transaction Header */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-2xl font-bold text-gray-900">Transaction Details</h1>
           <div className="flex space-x-2">
@@ -91,9 +91,9 @@ export default function TransactionPage() {
         {transaction.blockhash && (
           <div className="mt-4">
             <label className="block text-sm font-medium text-gray-500">Block Hash</label>
-            <Link 
+            <Link
               href={`/block/${transaction.blockhash}`}
-              className="mt-1 text-sm font-mono text-blue-600 hover:text-blue-800 break-all"
+              className="mt-1 text-sm font-mono text-[color:var(--color-accent)] hover:underline break-all"
             >
               {transaction.blockhash}
             </Link>
@@ -111,7 +111,7 @@ export default function TransactionPage() {
       </div>
 
       {/* Transaction Inputs */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <h2 className="text-xl font-bold text-gray-900 mb-4">
           Inputs ({transaction.vin.length})
         </h2>
@@ -132,7 +132,7 @@ export default function TransactionPage() {
                 <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-500">Previous Transaction</label>
-                    <p className="mt-1 text-sm font-mono text-blue-600 break-all">{input.txid}</p>
+                    <p className="mt-1 text-sm font-mono text-[color:var(--color-accent)] break-all">{input.txid}</p>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-500">Output Index</label>
@@ -153,7 +153,7 @@ export default function TransactionPage() {
       </div>
 
       {/* Transaction Outputs */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <h2 className="text-xl font-bold text-gray-900 mb-4">
           Outputs ({transaction.vout.length})
         </h2>
@@ -176,7 +176,7 @@ export default function TransactionPage() {
                     <label className="block text-sm font-medium text-gray-500">Address(es)</label>
                     <div className="mt-1 space-y-1">
                       {output.scriptPubKey.addresses.map((address, addrIndex) => (
-                        <p key={addrIndex} className="text-sm font-mono text-blue-600 break-all">
+                        <p key={addrIndex} className="text-sm font-mono text-[color:var(--color-accent)] break-all">
                           {address}
                         </p>
                       ))}
