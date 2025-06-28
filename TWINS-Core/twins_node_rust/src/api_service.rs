@@ -1,6 +1,6 @@
 use axum;
 use axum::{
-    routing::get,
+    routing::{get, post},
     response::{Json, IntoResponse, Response, Sse},
     Router,
     extract::{State, Path, Query},
@@ -438,6 +438,12 @@ struct HybridSyncResponse {
     mode_description: String,
 }
 
+#[derive(Serialize)]
+struct ResetSyncResponse {
+    success: bool,
+    message: String,
+}
+
 async fn hybrid_sync_handler(State(app_state): State<ApiAppState>) -> Json<HybridSyncResponse> {
     log::info!("API /hybrid-sync endpoint called");
     
@@ -535,16 +541,8 @@ async fn get_network_height_from_peers(app_state: &ApiAppState, current_height: 
         return std::cmp::max(best_peer_height, current_height);
     }
     
-    // Fallback to known mainnet height if no peer data available
-    const KNOWN_MAINNET_HEIGHT: u32 = 1_613_126; // As of June 2025
-    
-    // If we're syncing historical blocks, use the known mainnet height
-    if current_height < KNOWN_MAINNET_HEIGHT {
-        return KNOWN_MAINNET_HEIGHT;
-    }
-    
-    // If we're caught up or ahead, assume we're at the current height
-    current_height
+    // No peer height available. Returning 0 indicates unknown network height
+    0
 }
 
 async fn get_block_by_hash_handler(
@@ -830,8 +828,16 @@ async fn get_peers_handler(
     
     // Since we don't have direct access to peer details yet, return basic info
     let peers_info = vec![]; // Placeholder - would need PeerManager enhancement
-    
+
     Ok(Json(peers_info))
+}
+
+async fn reset_sync_handler(
+    State(app_state): State<ApiAppState>,
+) -> Json<ResetSyncResponse> {
+    log::info!("API /reset-sync endpoint called");
+    app_state.chain_state.reset();
+    Json(ResetSyncResponse { success: true, message: "Sync reset".to_string() })
 }
 
 async fn status_stream_handler(
@@ -905,6 +911,7 @@ pub fn create_router(app_state: ApiAppState) -> Router {
         .route("/api/v1/masternode/:outpoint", get(get_masternode_detail_handler))
         .route("/api/v1/governance/proposals", get(get_governance_proposals_handler))
         .route("/api/v1/peers", get(get_peers_handler))
+        .route("/api/v1/reset-sync", post(reset_sync_handler))
         .route("/api/v1/status/stream", get(status_stream_handler))
         .route("/api/v1/torrent-sync", get(torrent_sync_handler))
         .route("/api/v1/hybrid-sync", get(hybrid_sync_handler))

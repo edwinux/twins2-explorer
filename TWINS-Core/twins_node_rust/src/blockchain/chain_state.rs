@@ -261,4 +261,30 @@ impl ChainState {
         }
         locator
     }
-} 
+
+    pub fn reset(&self) {
+        if let Err(e) = self.storage.reset() {
+            log::error!("Failed to reset storage: {}", e);
+            return;
+        }
+
+        let genesis = get_mainnet_genesis_block_index();
+        let genesis_arc = Arc::new(genesis);
+
+        {
+            let mut map = self.block_index_map.write().unwrap();
+            map.clear();
+            map.insert(self.genesis_hash, Arc::clone(&genesis_arc));
+        }
+
+        if let Err(e) = self.storage.save_header(&genesis_arc) {
+            log::error!("Failed to save genesis header after reset: {}", e);
+        }
+        if let Err(e) = self.storage.set_chain_tip_hash(&self.genesis_hash) {
+            log::error!("Failed to set tip hash after reset: {}", e);
+        }
+
+        let mut tip = self.current_tip.write().unwrap();
+        *tip = Some(genesis_arc);
+    }
+}

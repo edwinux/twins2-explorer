@@ -43,10 +43,12 @@ pub trait BlockStorage: Send + Sync + std::fmt::Debug {
     fn get_block_hash_by_height(&self, height: u32) -> Result<Option<[u8; 32]>, RusqliteError>;
     fn get_transaction_details(&self, txid: &[u8; 32]) -> Result<Option<(TransactionData, Option<[u8;32]>, Option<u32>)>, RusqliteError>;
     fn get_block_hashes_by_height_range(&self, max_height: u32, count: u32) -> Result<Vec<[u8; 32]>, RusqliteError>;
+    fn reset(&self) -> Result<(), RusqliteError>;
 }
 
 pub struct SqliteBlockStorage {
     conn: Mutex<Connection>,
+    db_path: String,
 }
 
 impl std::fmt::Debug for SqliteBlockStorage {
@@ -58,8 +60,7 @@ impl std::fmt::Debug for SqliteBlockStorage {
 }
 
 impl SqliteBlockStorage {
-    pub fn new(db_path: &str) -> Result<Self, RusqliteError> {
-        let conn = Connection::open(db_path)?;
+    fn init_db(conn: &Connection) -> Result<(), RusqliteError> {
         conn.execute("CREATE TABLE IF NOT EXISTS block_headers (hash BLOB PRIMARY KEY, height INTEGER NOT NULL, prev_hash BLOB, header_data BLOB NOT NULL)", [])?;
         conn.execute("CREATE TABLE IF NOT EXISTS blocks (hash BLOB PRIMARY KEY, block_data BLOB NOT NULL)", [])?;
         conn.execute("CREATE TABLE IF NOT EXISTS chain_metadata (key TEXT PRIMARY KEY, value_blob BLOB, value_text TEXT)", [])?;
@@ -74,7 +75,24 @@ impl SqliteBlockStorage {
         conn.execute("CREATE INDEX IF NOT EXISTS idx_tx_lock_votes_txid ON tx_lock_votes (txid);", [])?;
         conn.execute("CREATE TABLE IF NOT EXISTS transactions (txid BLOB PRIMARY KEY, block_hash BLOB, block_height INTEGER, tx_data BLOB NOT NULL)", [])?;
         conn.execute("CREATE INDEX IF NOT EXISTS idx_transactions_block_hash ON transactions (block_hash);", [])?;
-        Ok(SqliteBlockStorage { conn: Mutex::new(conn) })
+        Ok(())
+    }
+
+    pub fn new(db_path: &str) -> Result<Self, RusqliteError> {
+        let conn = Connection::open(db_path)?;
+        Self::init_db(&conn)?;
+        Ok(SqliteBlockStorage { conn: Mutex::new(conn), db_path: db_path.to_string() })
+    }
+
+    pub fn reset_db(&self) -> Result<(), RusqliteError> {
+        {
+            let _ = std::fs::remove_file(&self.db_path);
+        }
+        let new_conn = Connection::open(&self.db_path)?;
+        Self::init_db(&new_conn)?;
+        let mut guard = self.conn.lock().unwrap();
+        *guard = new_conn;
+        Ok(())
     }
 }
 
@@ -380,5 +398,9 @@ impl BlockStorage for SqliteBlockStorage {
         let mut hashes = Vec::new();
         for row_result in rows { hashes.push(row_result?); }
         Ok(hashes)
+    }
+
+    fn reset(&self) -> Result<(), RusqliteError> {
+        SqliteBlockStorage::reset_db(self)
     }
 }
