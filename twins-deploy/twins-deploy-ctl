@@ -128,7 +128,7 @@ show_backups() {
     
     local backup_dir="/opt/twins-deploy/backups"
     if [ -d "$backup_dir" ]; then
-        ls -la "$backup_dir" | grep "^d" | awk {print , , , } | grep -v "^\.$\|^\.\.$" | while read backup date1 date2 time; do
+        ls -la "$backup_dir" | grep "^d" | awk '{print $9,$6,$7,$8}' | grep -v '^\.\.\? ' | while read backup date1 date2 time; do
             if [ -n "$backup" ]; then
                 echo -e "  📦 ${GREEN}$backup${NC} - $date1 $date2 $time"
             fi
