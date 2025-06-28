@@ -40,7 +40,7 @@ export default function HomePage() {
   return (
     <div className="space-y-8">
       {/* Search Bar */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-gray-900">Search the TWINS Blockchain</h2>
           <div className="flex items-center space-x-2">
@@ -59,7 +59,7 @@ export default function HomePage() {
       </div>
 
       {/* Network Status Overview */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">TWINS Network Status</h2>
         {status ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -86,7 +86,7 @@ export default function HomePage() {
       </div>
 
       {/* Recent Blocks */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-gray-900">Recent Blocks</h2>
           <Link 
@@ -144,7 +144,7 @@ export default function HomePage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Explorer Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Link href="/stats" className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors">

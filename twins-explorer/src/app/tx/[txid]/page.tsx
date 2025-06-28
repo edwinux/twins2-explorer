@@ -42,7 +42,7 @@ export default function TransactionPage() {
   return (
     <div className="space-y-6">
       {/* Transaction Header */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-2xl font-bold text-gray-900">Transaction Details</h1>
           <div className="flex space-x-2">
@@ -111,7 +111,7 @@ export default function TransactionPage() {
       </div>
 
       {/* Transaction Inputs */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <h2 className="text-xl font-bold text-gray-900 mb-4">
           Inputs ({transaction.vin.length})
         </h2>
@@ -153,7 +153,7 @@ export default function TransactionPage() {
       </div>
 
       {/* Transaction Outputs */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <h2 className="text-xl font-bold text-gray-900 mb-4">
           Outputs ({transaction.vout.length})
         </h2>

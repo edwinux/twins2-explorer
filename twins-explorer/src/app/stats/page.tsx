@@ -40,7 +40,7 @@ export default function StatsPage() {
   return (
     <div className="space-y-8">
       {/* Page Header */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">TWINS Network Statistics</h1>
@@ -64,7 +64,7 @@ export default function StatsPage() {
 
       {/* Core Network Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-lg shadow-sm border p-6">
+        <div className="card">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <div className="w-8 h-8 bg-blue-100 rounded-md flex items-center justify-center">
@@ -80,7 +80,7 @@ export default function StatsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-6">
+        <div className="card">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <div className={`w-8 h-8 rounded-md flex items-center justify-center ${
@@ -112,7 +112,7 @@ export default function StatsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-6">
+        <div className="card">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <div className="w-8 h-8 bg-purple-100 rounded-md flex items-center justify-center">
@@ -128,7 +128,7 @@ export default function StatsPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border p-6">
+        <div className="card">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <div className="w-8 h-8 bg-orange-100 rounded-md flex items-center justify-center">
@@ -150,7 +150,7 @@ export default function StatsPage() {
       {/* Additional Statistics */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Block Statistics */}
-        <div className="bg-white rounded-lg shadow-sm border p-6">
+        <div className="card">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Block Statistics</h2>
           <div className="space-y-4">
             <div className="flex justify-between items-center">
@@ -182,7 +182,7 @@ export default function StatsPage() {
         </div>
 
         {/* Version Information */}
-        <div className="bg-white rounded-lg shadow-sm border p-6">
+        <div className="card">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Node Information</h2>
           <div className="space-y-4">
             <div className="flex justify-between items-center">
@@ -211,7 +211,7 @@ export default function StatsPage() {
 
       {/* Sporks Information */}
       {sporks.length > 0 && (
-        <div className="bg-white rounded-lg shadow-sm border p-6">
+        <div className="card">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Network Sporks</h2>
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
@@ -261,7 +261,7 @@ export default function StatsPage() {
       )}
 
       {/* Recent Blocks Summary */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="card">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-gray-900">Recent Block Activity</h2>
           <Link 

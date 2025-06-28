@@ -42,7 +42,7 @@ export default function BlockPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow p-6">
+      <div className="card">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Block {block.height.toLocaleString()}</h1>
@@ -70,7 +70,7 @@ export default function BlockPage() {
       </div>
 
       {/* Block Details */}
-      <div className="bg-white rounded-lg shadow">
+      <div className="card p-0">
         <div className="px-6 py-4 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Block Information</h2>
         </div>
@@ -161,7 +161,7 @@ export default function BlockPage() {
       </div>
 
       {/* Transactions */}
-      <div className="bg-white rounded-lg shadow">
+      <div className="card p-0">
         <div className="px-6 py-4 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">
             Transactions ({block.nTx})
